@@ -1,4 +1,5 @@
-$(".jumpscare").hide();
+// $(".jumpscare").hide();
+document.querySelector(".jumpscare").hidden = true;
 
 var buttonColours = ["red", "blue", "green", "yellow"];
 
@@ -10,32 +11,131 @@ var level = 0;
 
 var isTen = false;
 
-$(document).keypress(function () {
+// $(document).keypress(function () {
+//   alert("pressed")
+//   if (!started) {
+//     $("#level-title").text("Level " + level);
+//     nextSequence();
+//     started = true;
+//   }
+// });
+
+document.addEventListener("keypress", function () {
+  // alert("pressed");
   if (!started) {
-    $("#level-title").text("Level " + level);
+    document.querySelector("#level-title").innerText = "Level " + level
     nextSequence();
     started = true;
   }
-});
+})
 
-$(".btn").click(function () {
+// $(".btn").click(function () {
 
-  var userChosenColour = $(this).attr("id");
+//   var userChosenColour = $(this).attr("id");
+//   userClickedPattern.push(userChosenColour);
+
+  // playSound(userChosenColour);
+  // animatePress(userChosenColour);
+
+//   //2. Call checkAnswer() after a user has clicked and chosen their answer, passing in the index of the last answer in the user's sequence.
+  // if(userClickedPattern.length == 10 && isTen == false){
+  //   isTen = true;
+  //   playSound("jump");
+  //   $(".jumpscare").toggle()
+  //   setTimeout(() => {
+  //     $(".jumpscare").toggle();
+  //   }, 1000);
+  // }
+  // checkAnswer(userClickedPattern.length - 1);
+// });
+
+document.querySelectorAll(".btn")[0].addEventListener("click", function() {
+  // console.log(this.className)
+
+  // var userChosenColour = $(this).attr("id");
+  var userChosenColour = this.id;
   userClickedPattern.push(userChosenColour);
 
   playSound(userChosenColour);
   animatePress(userChosenColour);
 
-  //2. Call checkAnswer() after a user has clicked and chosen their answer, passing in the index of the last answer in the user's sequence.
   if(userClickedPattern.length == 10 && isTen == false){
     isTen = true;
     playSound("jump");
-    $(".jumpscare").toggle()
+    document.querySelector(".jumpscare").hidden = false
     setTimeout(() => {
-      $(".jumpscare").toggle();
+      document.querySelector(".jumpscare").hidden = true
     }, 1000);
   }
   checkAnswer(userClickedPattern.length - 1);
+
+  // console.log(userChosenColour);
+});
+
+document.querySelectorAll(".btn")[1].addEventListener("click", function() {
+  // console.log(this.className)
+
+  var userChosenColour = this.id;
+  userClickedPattern.push(userChosenColour);
+
+  playSound(userChosenColour);
+  animatePress(userChosenColour);
+
+  if(userClickedPattern.length == 10 && isTen == false){
+    isTen = true;
+    playSound("jump");
+    document.querySelector(".jumpscare").hidden = false
+    setTimeout(() => {
+      document.querySelector(".jumpscare").hidden = true
+    }, 1000);
+  }
+  checkAnswer(userClickedPattern.length - 1);
+
+  // console.log(userChosenColour);
+});
+
+document.querySelectorAll(".btn")[2].addEventListener("click", function() {
+  // console.log(this.className)
+
+  var userChosenColour = this.id;
+  userClickedPattern.push(userChosenColour);
+
+  playSound(userChosenColour);
+  animatePress(userChosenColour);
+
+  if(userClickedPattern.length == 10 && isTen == false){
+    isTen = true;
+    playSound("jump");
+    document.querySelector(".jumpscare").hidden = false
+    setTimeout(() => {
+      document.querySelector(".jumpscare").hidden = true
+    }, 1000);
+  }
+  checkAnswer(userClickedPattern.length - 1);
+
+  // console.log(userChosenColour);
+});
+
+document.querySelectorAll(".btn")[3].addEventListener("click", function() {
+  // console.log(this.className)
+
+  var userChosenColour = this.id;
+  userClickedPattern.push(userChosenColour);
+
+  playSound(userChosenColour);
+  animatePress(userChosenColour);
+
+  if(userClickedPattern.length == 10 && isTen == false){
+    isTen = true;
+    playSound("jump");
+    document.querySelector(".jumpscare").hidden = false
+    setTimeout(() => {
+      document.querySelector(".jumpscare").hidden = true
+    }, 1000);
+  }
+  checkAnswer(userClickedPattern.length - 1);
+
+  // console.log(userChosenColour);
 });
 
 
@@ -86,13 +186,17 @@ function nextSequence() {
   userClickedPattern = [];
 
   level++;
-  $("#level-title").text("Level " + level);
+  document.querySelector("#level-title").innerText = "Level " + level
 
   var randomNumber = Math.floor(Math.random() * 4);
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
 
-  $("#" + randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
+  //$("#" + randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
+  document.querySelector("#" + randomChosenColour).classList.add("pressed");
+  setTimeout(function () {
+    document.querySelector("#" + randomChosenColour).classList.remove("pressed");
+  }, 100)
   playSound(randomChosenColour);
 }
 
@@ -102,9 +206,11 @@ function playSound(name) {
 }
 
 function animatePress(currentColor) {
-  $("#" + currentColor).addClass("pressed");
+  // $("#" + currentColor).addClass("pressed");
+  document.querySelector("#" + currentColor).classList.add("pressed")
   setTimeout(function () {
-    $("#" + currentColor).removeClass("pressed");
+    // $("#" + currentColor).removeClass("pressed");
+    document.querySelector("#" + currentColor).classList.remove("pressed")
   }, 100);
 }
 
@@ -113,3 +219,5 @@ function startOver() {
   gamePattern = [];
   started = false;
 }
+
+// yes, this is costa
