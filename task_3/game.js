@@ -169,11 +169,14 @@ function checkAnswer(currentLevel) {
 
     playSound("wrong");
     console.log("wrong");
-    $("body").addClass("game-over");
+    // $("body").addClass("game-over");
+    document.body.classList.add("game-over")
     setTimeout(function () {
-      $("body").removeClass("game-over");
+      // $("body").removeClass("game-over");
+      document.body.classList.remove("game-over")
     }, 200)
-    $("#level-title").text("Game Over, Press Any Key to Restart")
+    // $("#level-title").text("Game Over, Press Any Key to Restart")
+    document.querySelector("#level-title").innerText = "Game Over, Press Any Key to Restart"
     startOver();
 
   }
