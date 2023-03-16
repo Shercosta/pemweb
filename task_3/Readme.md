@@ -1,3 +1,0 @@
-# Dear Mr. Habib. 
-Yes, i made this myself, though this is an old code, i did this back in august. But it was in jQuery originally, as you can see the commented-out Codes. Try playing this to at least level 10.
-And i see that this little game of mine matched the requirements for your task_3 assignment, so here it is...
